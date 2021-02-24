@@ -15,6 +15,8 @@ public class MessageData {
 
     private Data keyword2;
 
+    private Data keyword3;
+
     private Data remark;
 
     public Data getFirst() {
@@ -49,27 +51,11 @@ public class MessageData {
         this.remark = remark;
     }
 
-    class Data{
-        private String value;
-        private String color;
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-
-        public String getColor() {
-            return color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
+    public Data getKeyword3() {
+        return keyword3;
     }
 
-
-
+    public void setKeyword3(Data keyword3) {
+        this.keyword3 = keyword3;
+    }
 }
