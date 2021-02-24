@@ -21,7 +21,7 @@ public class SendMessageService {
 
     @Value("${wechat.message.send.url}")
     private String url;
-    @Value("${qgncXo4k5-OEnQH6T5xkVEjSnr4POP2_TPFPafNTc44}")
+    @Value("${wechat.message.id}")
     private String templateId;
     /**
      * 微信access_token
