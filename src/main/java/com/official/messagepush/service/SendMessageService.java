@@ -47,7 +47,7 @@ public class SendMessageService {
     private final static String SUCCESS_VALUE = "0";
     private final static String ERR_CODE_KEY = "errcode";
 
-    public boolean send(Map<String,String> messageMap){
+    public boolean send(Map<String, String> messageMap){
         MessageRequestBean requestBean = new MessageRequestBean();
         requestBean.setTouser(messageMap.get(OPEN_ID));
         requestBean.setTemplateId(templateId);

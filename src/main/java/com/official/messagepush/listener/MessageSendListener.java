@@ -1,5 +1,7 @@
 package com.official.messagepush.listener;
 
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.official.messagepush.service.SendMessageService;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
@@ -20,19 +22,23 @@ import java.util.Map;
 
 @Component
 @RabbitListener(queues = "topic.message.send")
-public class MessageSendListener {
+public class MessageSendListener  {
 
     @Resource
     private SendMessageService sendMessageService;
     private final static Logger LOGGER = LoggerFactory.getLogger(MessageSendListener.class);
 
     @RabbitHandler
-    public void invoke(Message message, Map<String,String> messageMap, Channel channel) throws IOException {
-        LOGGER.info("MessageSendListener消费者收到消息:{}",messageMap.toString());
-        long dliveryTag=message.getMessageProperties().getDeliveryTag();
+    public void process(Message message, String messageJson, Channel channel) throws IOException {
+        LOGGER.info("MessageSendListener消费者收到消息:{}",messageJson);
+        long deliveryTag=message.getMessageProperties().getDeliveryTag();
+        //将JSON格式数据转换为Map对象
+        ObjectMapper mapper = new ObjectMapper();
+        JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, String.class, String.class);
+        Map<String, String> messageMap = mapper.readValue(message.getBody(),javaType);
         if (sendMessageService.send(messageMap)){
             //签收
-            channel.basicAck(dliveryTag,false);
+            channel.basicAck(deliveryTag,false);
         }
     }
 
