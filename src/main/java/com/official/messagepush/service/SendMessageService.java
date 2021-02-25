@@ -36,10 +36,6 @@ public class SendMessageService {
      */
     private final static String TEL = "tel";
     /**
-     * 用户姓名
-     */
-    private final static String NAME = "name";
-    /**
      * 用户注册时间
      */
     private final static String REGISTER_TIME = "registerTime";
@@ -53,9 +49,8 @@ public class SendMessageService {
         requestBean.setTemplateId(templateId);
         MessageData data = new MessageData();
         data.setFirst(new Data("你好，有新用户在您的推荐下已成功在平台注册","#173177"));
-        data.setKeyword1(new Data(messageMap.get(NAME),"#173177"));
-        data.setKeyword2(new Data(messageMap.get(TEL),"#173177"));
-        data.setKeyword3(new Data(messageMap.get(REGISTER_TIME),"#173177"));
+        data.setKeyword1(new Data(messageMap.get(TEL),"#173177"));
+        data.setKeyword2(new Data(messageMap.get(REGISTER_TIME),"#173177"));
         data.setRemark(new Data("感谢您的鼎力支持","#173177"));
         requestBean.setData(data);
         String params = JSONObject.toJSONString(requestBean);

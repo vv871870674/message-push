@@ -15,8 +15,6 @@ public class MessageData {
 
     private Data keyword2;
 
-    private Data keyword3;
-
     private Data remark;
 
     public Data getFirst() {
@@ -49,13 +47,5 @@ public class MessageData {
 
     public void setRemark(Data remark) {
         this.remark = remark;
-    }
-
-    public Data getKeyword3() {
-        return keyword3;
-    }
-
-    public void setKeyword3(Data keyword3) {
-        this.keyword3 = keyword3;
     }
 }
